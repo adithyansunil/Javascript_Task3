@@ -26,19 +26,16 @@
 <body> 
     <form name="frmbmi">
     <center>
-        <h1>BMI Calculator</h1>
+        <h1>EMI Calculator</h1>
         <div class="form">
-            <label>Gender:</label>
-            &nbsp;&nbsp;Male<input type="radio" value="male" name="sex">
-            &nbsp;&nbsp;Female<input type="radio" value="female" name="sex"><br><br>
-            Age
-            <input type="text" name="age"><br><br>
-            Height
-            <input type="text" name="hgt" placeholder="In centimeters"><br><br>
-            Weight
-            <input type="text" name="wgt" placeholder="In kilograms"><br><br>
-            BMI
-            <input type="text" name="bmi"><br><br>
+            <label>Loan amount</label>
+            <input type="text" name="amount" placeholder="Enter the Loan amount"><br><br>
+            <label>Interest Rate(%)</label>
+            <input type="text" name="rate" placeholder="Enter the rate of interest"><br><br>
+            <label>Loan Tenure</label>
+            <input type="text" name="num" placeholder="Enter the number of months"><br><br>
+            EMI
+            <input type="text" name="emi"><br><br>
             <input type="button" value="Calculate" onclick="calculate()">
         </div><br><br>
         <div id="result" style="color: white;"></div>
@@ -46,17 +43,12 @@
     </form>
     <script lang="javascript">
         function calculate(){
-            var h,w,bmi;
-            h = parseInt(document.frmbmi.hgt.value);
-            w = parseInt(document.frmbmi.wgt.value);
-            bmi = (w / ((h * h)/ 10000)).toFixed(2);
-            document.frmbmi.bmi.value = bmi;
-            if (bmi < 18.6)
-             result.innerHTML =`Under Weight : <span>${bmi}</span>`;
-             else if (bmi >= 18.6 && bmi < 24.9) 
-            result.innerHTML = `Normal : <span>${bmi}</span>`;
-            else 
-            result.innerHTML =`Over Weight : <span>${bmi}</span>`;
+        var p,r,n,emi;
+        p = parseFloat(document.frmbmi.amount.value);
+        r = parseFloat(document.frmbmi.rate.value) / (12 * 100); 
+        n = parseFloat(document.frmbmi.num.value);
+        emi = (p * r * (Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1)); 
+        document.frmbmi.emi.value = emi.toFixed(2); 
         }
     </script>
 </body> 
